@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #8ccbde;
+        }
+        #nightMode{
+            width: 150px;
+            height: 35px;
+            background-color: #474343;
+            color: #ffffffe5;
+            border-radius: 10px;
+        }
+        #calculator {
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            border: 4px soild #ccc;
+            border-radius: 5px;
+            box-shadow: 2px 2px 6px #796a6a;
+        }
+        #display{
+            width: 100%;
+            height: 50px;
+            border: 2px solid rgb(33, 156, 227);
+            text-align: right;
+            font-size: 42px;
+            border-radius: 13px;
+            margin-bottom:20px ;
+        }
+        .button{
+            width: 60px;
+            height: 60px;
+            margin: 2px;
+            font-size: 21px;
+            border: 1px solid black;
+            background-color:  #4681f4;
+            color: #ffffff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .button:hover{
+            background-color:  #ffbd03;
+            color: black;
+            font-weight: bolder;
+            transition: 0.15s;
+        }
+    </style>
+    <script> 
+        
+        function calc(btnClicked) {
+            let data = btnClicked.getAttribute("data");
+            let display = document.getElementById('display');
+            let expression = display.innerHTML;
+
+            if (data == 'ce'){
+                expression=0
+            }else if (data == 'del') {
+                expression = expression.slice(0 , -1);
+            }else if (data == '='){
+                expression = eval(expression);
+            }else if (data== 'sqr') {
+                expression = Math.sqrt(expression);
+            }else {
+                if (expression == '0' ) {
+                    
+                    expression = data;
+                } else {
+                    expression = expression + data ;
+                }
+            } 
+            display.innerHTML = expression;
+        }
+
+    </script>
+</head>
+<body>
+    <nav>
+        <button id="nightMode" >Dark Mode</button>
+    </nav>
+    <div id="calculator">
+        <div id="display">0</div>
+        <div>
+            <button class="button" onclick="calc(this)" data="7">7</button>
+            <button class="button" onclick="calc(this)" data="8">8</button>
+            <button class="button" onclick="calc(this)" data="9">9</button>
+            <button class="button" onclick="calc(this)" data="/">/</button>
+        </div>
+        <div>
+            <button class="button" onclick="calc(this)" data="4">4</button>
+            <button class="button" onclick="calc(this)" data="5">5</button>
+            <button class="button" onclick="calc(this)" data="6">6</button>
+            <button class="button" onclick="calc(this)" data="*">*</button>
+        </div>
+        <div>
+            <button class="button" onclick="calc(this)" data="1">1</button>
+            <button class="button" onclick="calc(this)" data="2">2</button>
+            <button class="button" onclick="calc(this)" data="3">3</button>
+            <button class="button" onclick="calc(this)" data="-">-</button>
+        </div>
+        <div>
+            <button class="button" onclick="calc(this)" data="0">0</button>
+            <button class="button" onclick="calc(this)" data=".">.</button>
+            <button class="button" onclick="calc(this)" data="=">=</button>
+            <button class="button" onclick="calc(this)" data="+">+</button>
+        </div>
+
+        <div>
+            <button class="button" onclick="calc(this)" data="00">00</button>
+            <button class="button" onclick="calc(this)" data="ce">CE</button>
+            <button class="button" onclick="calc(this)" data="del">Del</button>
+            <button class="button" onclick="calc(this)" data="sqr">Sqr</button>
+        </div>
+        <!-- <div>
+            <button class="button" onclick="calc(this)" data=""></button>
+            <button class="button" onclick="calc(this)" data=""></button>
+            <button class="button" onclick="calc(this)" data=""></button>
+            <button class="button" onclick="calc(this)" data=""></button>
+        </div> -->
+        </div>
+    </div>
+</body>
+</html>
